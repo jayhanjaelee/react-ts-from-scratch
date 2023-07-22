@@ -1,6 +1,6 @@
 # React Typescript Template From Scratch
 
-## Steps
+## Basic Setup Step
 
 1. mkdir src build
 2. npm init --y
@@ -120,4 +120,45 @@ module.exports = {
 "scripts": {
   "start": "webpack serve --config webpack/webpack.config.js --open"
 }
+```
+
+## styles Setup Step
+
+1. install dev dependencies.
+
+```sh
+yarn add -D css-loader style-loader
+```
+
+2. add configuration in webpack.config.js
+
+```js
+{
+  test: /\.css$/,
+  use: ["style-loader", "css-loader"],
+},
+```
+
+3. create `declarations.d.ts` then add declare
+
+```ts
+declare module "*.png"
+```
+
+4. add configuration for images in webpack.config.js
+
+```js
+{
+  test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+  type: "asset/resource",
+},
+```
+
+5. add asset/inline configuration to serve inline images like svg.
+
+```js
+{
+  test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+  type: "asset/inline",
+},
 ```
