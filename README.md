@@ -15,6 +15,8 @@
     - [Install Dev dependencies](#install-dev-dependencies-1)
     - [.prettierrc.js](#prettierrcjs)
     - [add scripts to package.json](#add-scripts-to-packagejson)
+  - [How to prevent linting and forammting errors from being committed repository](#how-to-prevent-linting-and-forammting-errors-from-being-committed-repository)
+    - [Add configuration to package.json](#add-configuration-to-packagejson)
 
 ## usage
 
@@ -406,4 +408,28 @@ module.exports = {
 "scripts": {
   "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
 },
+```
+
+## How to prevent linting and forammting errors from being committed repository
+
+```sh
+yarn add -D husky@4 lint-staged
+```
+
+### Add configuration to package.json
+
+```json
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+},
+"lint-staged": {
+  "src/**/*.{js,jsx,ts,tsx,json}": [
+    "eslint --fix"
+  ],
+  "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "prettier --write"
+  ]
+}
 ```
