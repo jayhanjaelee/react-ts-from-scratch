@@ -17,6 +17,7 @@
     - [add scripts to package.json](#add-scripts-to-packagejson)
   - [How to prevent linting and forammting errors from being committed repository](#how-to-prevent-linting-and-forammting-errors-from-being-committed-repository)
     - [Add configuration to package.json](#add-configuration-to-packagejson)
+  - [babel runtime](#babel-runtime)
 
 ## usage
 
@@ -432,4 +433,49 @@ yarn add -D husky@4 lint-staged
     "prettier --write"
   ]
 }
+```
+
+## babel runtime
+
+Install
+
+```sh
+yarn add -D @babel/runtime @babel/plugin-transform-runtime
+```
+
+.babelrc
+
+```json
+{
+  "presets": [
+    "@babel/preset-env",
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
+  ]
+}
+```
+
+webpack-plugin
+
+```sh
+yarn add -D copy-webpack-plugin
+ ```
+
+webpack-bundle-analyzer
+
+```sh
+yarn add -D webpack-bundle-analyzer
 ```
