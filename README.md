@@ -1,10 +1,35 @@
 # React Typescript Template From Scratch
 
 - [React Typescript Template From Scratch](#react-typescript-template-from-scratch)
+  - [usage](#usage)
+    - [build](#build)
+    - [start](#start)
   - [Basic Setup Step](#basic-setup-step)
   - [Styles Setup Step](#styles-setup-step)
   - [Setup multiple environment for production and development.](#setup-multiple-environment-for-production-and-development)
+  - [ESLint Setup](#eslint-setup)
+    - [Install Dev Dependencies](#install-dev-dependencies)
+    - [.eslintrc.js](#eslintrcjs)
+    - [Add script to package.json](#add-script-to-packagejson)
+  - [Prettier Setup](#prettier-setup)
+    - [Install Dev dependencies](#install-dev-dependencies-1)
+    - [.prettierrc.js](#prettierrcjs)
+    - [add scripts to package.json](#add-scripts-to-packagejson)
 
+## usage
+
+### build
+
+```sh
+yarn build
+```
+
+### start
+
+```sh
+cd build
+npx serve
+```
 ## Basic Setup Step
 
 1. mkdir src build
@@ -294,4 +319,91 @@ export const App = () => {
     </>
   );
 };
+```
+
+## ESLint Setup
+
+### Install Dev Dependencies
+
+```sh
+yarn add -D eslint
+
+yarn add -D eslint-plugin-react-hooks
+
+yarn add -D @typescript-eslint/parser @typescript-eslint/eslint
+
+yarn add -D eslint-plugin-import eslint-plugin-jsx-a11y
+```
+
+
+### .eslintrc.js
+
+```js
+module.exports = {
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: "module",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  extends: [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended",
+  ],
+  rules: {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-var-requires": "off",
+    "react/prop-types": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+  },
+};
+```
+
+### Add script to package.json
+
+```json
+"scripts": {
+  "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\""
+},
+```
+
+## Prettier Setup
+
+### Install Dev dependencies
+
+```sh
+yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
+```
+
+### .prettierrc.js
+
+```js
+module.exports = {
+  semi: false,
+  trailingComma: "es5",
+  singleQuote: true,
+  printWidth: 80,
+  tabWidth: 2,
+  endOfLine: "auto",
+};
+```
+
+### add scripts to package.json
+
+```json
+"scripts": {
+  "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+},
 ```
